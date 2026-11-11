@@ -470,5 +470,74 @@ body.modal-open { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+/* PORTADA CON IMAGEN DE FONDO */
+
+.hero {
+  display: flex;
+  align-items: center;
+  min-height: 580px;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(20, 26, 24, 0.80) 0%,
+      rgba(20, 26, 24, 0.48) 65%,
+      rgba(20, 26, 24, 0.30) 100%
+    ),
+    url("assets/construccion2.jpg") center / cover no-repeat;
+}
+
+.hero .hero-grid {
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "intro"
+    "actions";
+  row-gap: 0.75rem;
+}
+
+.hero .hero-picture {
+  display: none;
+}
+
+.hero .hero-intro,
+.hero .hero-actions {
+  max-width: 650px;
+  align-self: auto;
+}
+
+.hero h1,
+.hero .lead,
+.hero .eyebrow,
+.hero .hero-plans {
+  color: #fff;
+}
+
+.hero .hero-plans button {
+  color: #fff;
+}
+
+.hero .btn-secondary {
+  color: #fff;
+  border-color: #fff;
+}
+
+.hero .btn-secondary:hover {
+  background: #fff;
+  color: var(--graphite);
+}
+
+/* Ajustes para celulares */
+
+@media (max-width: 600px) {
+  .hero {
+    min-height: 620px;
+    padding: 3rem 0;
+    background-position: 60% center;
+  }
+
+  .hero .hero-grid {
+    row-gap: 1.25rem;
+  }
+}
+
   .reveal { opacity: 1; transform: none; }
 }
