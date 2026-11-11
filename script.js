@@ -574,7 +574,7 @@ function renderProjectsPage() {
   show(location.hash.slice(1));
 }
 
-/* ---------- PLANOS ILUSTRATIVOS (SVG generado desde los datos) ---------- */
+/* ---------- PLANOS (SVG generado desde los datos) ---------- */
 const fmtNum = (n) => String(+n.toFixed(2)).replace(".", ",");
 
 function planSVG(p) {
@@ -637,7 +637,7 @@ function planSVG(p) {
   // norte y rótulo
   g += `<g transform="translate(${vbW - 28} 30)"><path d="M0 -14 L7 8 L0 3 L-7 8 Z" fill="${ink}"/><text y="24" text-anchor="middle" font-size="12" font-weight="800" fill="${ink}">N</text></g>`;
   const ty = pad + bodyH + 20 + 20;
-  g += `<text x="${X(0)}" y="${ty}" font-size="13" font-weight="800" fill="${ink}">Planta · plano ilustrativo</text>`;
+  g += `<text x="${X(0)}" y="${ty}" font-size="13" font-weight="800" fill="${ink}">Planta</text>`;
   g += `<text x="${X(W)}" y="${ty}" text-anchor="end" font-size="13" font-weight="600" fill="#5A5E5F">Superficie construida: ${fmtNum(p.specs.surface)} m²</text>`;
 
   const desc = `Plano de planta de ${p.title}: ${p.specs.layout}`;
@@ -655,7 +655,7 @@ function openPlan(id) {
     planDialog.innerHTML = `
       <div class="dialog-inner">
         <div class="dialog-head">
-          <div><h2 id="plan-dialog-title"></h2><p class="plan-hint">Plano ilustrativo de la distribución. Desliza para recorrerlo.</p></div>
+          <div><h2 id="plan-dialog-title"></h2><p class="plan-hint">Desliza para recorrer el plano.</p></div>
           <button type="button" class="dialog-close" aria-label="Cerrar plano">&times;</button>
         </div>
         <div class="plan-scroll"></div>
@@ -692,7 +692,6 @@ function materialsHTML(p) {
     <dl class="mat-list">${p.materials
       .map(([z, t]) => `<div class="mat-row"><dt>${escapeHTML(z)}</dt><dd>${escapeHTML(t)}</dd></div>`)
       .join("")}</dl>
-    <p class="section-note">Modelo de ejemplo: los materiales y terminaciones se ajustan a tu proyecto y se confirman en la cotización.</p>
   </div></section>`;
 }
 
@@ -707,7 +706,6 @@ function planSectionHTML(p) {
       </button>
       <figcaption><strong>Distribución:</strong> ${escapeHTML(p.specs.layout)}</figcaption>
     </figure>
-    <p class="section-note">Plano ilustrativo. Las medidas finales se definen según tu terreno y se confirman en la cotización.</p>
   </div></section>`;
 }
 
@@ -848,6 +846,11 @@ function initActions() {
     }
   });
   $$("[data-instagram]").forEach((a) => (a.href = CONFIG.INSTAGRAM_URL));
+  const digits = String(CONFIG.WHATSAPP_NUMBER).replace(/\D/g, "");
+  if (/^\d{8,15}$/.test(digits)) {
+    const pretty = /^569\d{8}$/.test(digits) ? `+56 9 ${digits.slice(3, 7)} ${digits.slice(7)}` : `+${digits}`;
+    $$("[data-phone]").forEach((a) => { a.href = `tel:+${digits}`; a.textContent = pretty; });
+  }
 }
 
 function initFab() {
