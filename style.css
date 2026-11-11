@@ -415,10 +415,11 @@ body.modal-open { overflow: hidden; }
 }
 @media (max-width: 600px) {
   body { font-size: 1rem; }
-  .hero { align-items: flex-start; min-height: 0; padding: 2.25rem 0 17rem; background: var(--cream); }
-  .hero-bg { top: 36%; bottom: -14%; }
-  .hero-bg img { object-position: 50% 55%; }
-  .hero::after { background: linear-gradient(180deg, rgba(245,243,238,1) 0%, rgba(245,243,238,.97) 58%, rgba(245,243,238,.5) 72%, rgba(245,243,238,0) 90%); }
+  .hero { align-items: flex-start; min-height: 0; padding: 2.25rem 0 20rem; background: var(--cream); }
+  .hero-bg { top: 40%; bottom: 0; }
+  .hero-bg img { object-position: 56% 50%; }
+  .hero::after { background: linear-gradient(180deg, rgba(245,243,238,1) 0%, rgba(245,243,238,.97) 52%, rgba(245,243,238,.4) 68%, rgba(245,243,238,0) 84%); }
+  .hero .btn-secondary { background: rgba(245,243,238,.85); }
   .mat-row { grid-template-columns: 1fr; gap: .15rem; padding: .95rem 1.1rem; }
   .plan-hint { display: block; }
   .grid-2, .grid-3, .grid-4, .footer-grid { grid-template-columns: 1fr; }
